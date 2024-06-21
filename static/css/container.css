@@ -1,0 +1,21 @@
+#container {
+  flex-grow: 1; /* Added to make the container fill available space */
+  padding: 20px; /* Optional for some spacing */
+  margin-bottom: 300px;
+}
+
+#instruction {
+  border-radius: 10px;
+}
+
+p span {
+  font-weight: bold;
+}
+
+.instruction {
+  margin: auto;
+  padding: 0;
+  margin-top: 4%;
+  color: aliceblue;
+  width: 50%;
+}
