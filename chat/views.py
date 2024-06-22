@@ -3,29 +3,21 @@ from django.http import JsonResponse
 from .models import BaseFirstChat
 from django.utils import timezone
 import requests
-import json
-from datetime import datetime, timedelta
+from asgiref.sync import async_to_sync
 import pytz
 import configparser
+from channels.layers import get_channel_layer
+
+
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+
 def index(request):
     if request.method == 'GET':
-        messages = BaseFirstChat.objects.all().order_by('time')[:20]
-        response_list = []
-        for message in messages:
-            ny_time = message.time.astimezone(pytz.timezone('America/New_York'))
-            nickname_index = message.nickname
-            if nickname_index == 'GPTs_Answer_Assistant':
-                nickname_index = '🐱CATCEO🐾'
-            
-            response_list.append({
-                'Nickname': nickname_index,
-                'Content': message.content,
-                'Time': ny_time.strftime('%Y-%m-%d %H:%M:%S %Z')
-            })
+        messages = BaseFirstChat.objects.all().order_by('-time')[:20][::-1]
+        response_list = format_messages(messages)
         return render(request, 'index.html', {'messages': response_list})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
@@ -35,26 +27,47 @@ def send_message(request):
         content = request.POST.get('content')
         
         if len(nickname) > 10:
-            return JsonResponse({'message': 'Nickname exceeds 10 characters'}, status=400)
-        if len(content) > 50:
-            return JsonResponse({'message': 'Content exceeds 50 characters'}, status=400)
+            return JsonResponse({'message': 'Nickname exceeds 10 characters'}, status=412)
+        if len(content) > 500:
+            return JsonResponse({'message': 'Content exceeds 50 characters'}, status=413)
         
         last_message = BaseFirstChat.objects.last()
         if last_message and (timezone.now() - last_message.time).total_seconds() < 5:
-            messages = BaseFirstChat.objects.all().order_by('-time')[:20]
-            response_list = format_messages(messages)
-            return JsonResponse(response_list, safe=False)
+            return JsonResponse({'message': 'You must wait 5 seconds between messages'}, status=400)
         
         new_message = BaseFirstChat.objects.create(nickname=nickname, content=content)
         
-        recent_messages = BaseFirstChat.objects.all().order_by('time')[:20]
+        # GPT에게 메시지 요청
+        recent_messages = BaseFirstChat.objects.all().order_by('-time')[:20][::-1]
         recent_rows = format_messages(recent_messages)
+
         
         response_text = send_openai_request(recent_rows)
         
-        BaseFirstChat.objects.create(nickname='GPTs_Answer_Assistant', content=response_text)
+        gpt_message = BaseFirstChat.objects.create(nickname='GPTs_Answer_Assistant', content=response_text)
         
-        updated_messages = BaseFirstChat.objects.all().order_by('time')[:20]
+        # WebSocket을 통해 메시지 전송
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'chat_group',
+            {
+                'type': 'chat_message',
+                'nickname': nickname,
+                'content': content,
+                'timestamp': new_message.time.astimezone(pytz.timezone('America/New_York')).strftime('%Y-%m-%d %H:%M:%S %Z')
+            }
+        )
+        async_to_sync(channel_layer.group_send)(
+            'chat_group',
+            {
+                'type': 'chat_message',
+                'nickname': '🐱CATCEO🐾',
+                'content': response_text,
+                'timestamp': gpt_message.time.astimezone(pytz.timezone('America/New_York')).strftime('%Y-%m-%d %H:%M:%S %Z')
+            }
+        )
+        
+        updated_messages = BaseFirstChat.objects.all().order_by('-time')[:2][::-1]
         updated_rows = format_messages(updated_messages)
         
         return JsonResponse(updated_rows, safe=False)
@@ -81,12 +94,14 @@ def send_openai_request(recent_rows):
     messages = [system_message]
     
     for row in recent_rows:
-        nickname_index = "assistant" if row['Nickname'] == "GPTs_Answer_Assistant" else "user"
+        nickname_index = "assistant" if row['Nickname'] == "🐱CATCEO🐾" else "user"
         messages.append({
             "role": nickname_index,
-            "content": row['Content']
+            "content": row['Content'],
+            "Nickname": row['Nickname'],
+            "Time": row['Time']
         })
-    
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + config['OPENAI']['API_KEY']
@@ -96,10 +111,12 @@ def send_openai_request(recent_rows):
         'temperature': 0.5,
         'messages': messages
     }
+
     
     response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
     result = response.json()
     
+
     cat_image_url = fetch_cat_image_url()
     
     return result['choices'][0]['message']['content'] + '\n' + cat_image_url
@@ -107,4 +124,5 @@ def send_openai_request(recent_rows):
 def fetch_cat_image_url():
     response = requests.get('https://api.thecatapi.com/v1/images/search')
     result = response.json()
+
     return result[0]['url']
