@@ -10,7 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
+    - name: Deploy to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        port: ${{ secrets.AWS_SSH_PORT }}
+        script: |
+            cd ~/catceo_coin
+            git stash
+            git pull origin main
+            sudo docker-compose -f docker-compose.yml up --build -d
 
     - name: Send notification to Discord
       run: |
