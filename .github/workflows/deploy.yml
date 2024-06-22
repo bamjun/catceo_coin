@@ -27,12 +27,7 @@ jobs:
             sudo docker-compose -f docker-compose.yml up --build -d
 
     - name: Send notification to Discord
-      uses: inflex/discord-webhook@v1
-      with:
-        webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        content: |
-          Deployment to server is complete!
-          Repository: ${{ github.repository }}
-          Commit: ${{ github.sha }}
-          Branch: ${{ github.ref }}            
-
+      run: |
+        curl -X POST -H "Content-Type: application/json" \
+          -d '{"content": "Deployment to server is complete!\nRepository: '${{ github.repository }}'\nCommit: '${{ github.sha }}'\nBranch: '${{ github.ref }}'"}' \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
