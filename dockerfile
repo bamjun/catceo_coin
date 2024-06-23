@@ -17,6 +17,7 @@ COPY pyproject.toml poetry.lock /app/
 
 # Install dependencies
 RUN poetry config virtualenvs.create false \
+    && poetry add psycopg2-binary \
     && poetry install --no-root
 
 # Copy the rest of the application code to the working directory

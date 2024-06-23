@@ -89,7 +89,14 @@ else:
 
 if platform.system() == 'Linux':
     DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'db',  # 이 이름은 Docker Compose의 서비스 이름과 일치해야 합니다.
+            'PORT': '5432',
+        }
     }
 
 else:
