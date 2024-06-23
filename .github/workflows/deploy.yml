@@ -51,8 +51,6 @@ jobs:
                   -d "{\"content\": \"$LOGS_CONTENT\"}" \
                   ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-              sudo systemctl restart nginx
-
     - name: Send notification to Discord
       run: |
         curl -X POST -H "Content-Type: application/json" \
