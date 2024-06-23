@@ -21,8 +21,7 @@ RUN poetry config virtualenvs.create false \
 
 # Copy the rest of the application code to the working directory
 COPY . /app/
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+
 # Collect static files (optional)
 RUN python manage.py collectstatic --noinput --settings=config.settings
 
