@@ -114,13 +114,13 @@
             {% endfor %}
         </div>
         <div class="input-container">
-            <form method="POST" id="chat-form">
+            <form id="chat-form" method="post" action="{% url 'send_message' %}">
                 {% csrf_token %}
                 <label for="nickname">Nickname:</label>
                 <input type="text" id="nickname" name="nickname">
                 <label for="content">Content:</label>
                 <input type="text" id="content" name="content">
-                <button id="send-button" type="button" onclick="sendMessage()">Send</button>
+                <button id="send-button" type="submit">Send</button>
             </form>
         </div>
         <!-- Main Page Content -->
@@ -252,6 +252,11 @@
             chatBox.appendChild(messageElement);
             scrollToBottom();
         }
+
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            sendMessage();
+        });
 
         function sendMessage() {
             const nickname = document.getElementById("nickname").value;
