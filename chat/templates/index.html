@@ -272,7 +272,7 @@
                 }
             }, 1000);
 
-            fetch("/send_message/", {
+            fetch("{% url 'send_message' %}", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
