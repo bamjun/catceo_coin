@@ -1,14 +1,17 @@
 import os
 from pathlib import Path
-
+import platform
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-4rte67q*h*u9tkix!2m07h(m*b49&ww$hngeu!okvb*kqo(tp!'
+SECRET_KEY = 'eefkljbfef(3iweh*fh-4rte67q*h*u9tkix!2m07h(m*b49&ww$hngeu!okvb*kqo(tp!'
 
 
-DEBUG = False
+if platform.system() == 'Linux':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -58,17 +61,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 ASGI_APPLICATION = 'config.asgi.application'
-CHANNEL_LAYERS = {
-    # 'default': {
-    #     'BACKEND': 'channels.layers.InMemoryChannelLayer',
-    # },
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [(os.getenv('REDIS_URL', 'redis://localhost:6379'))],
+
+if platform.system() == 'Linux':
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                "hosts": [(os.getenv('REDIS_URL', 'redis://localhost:6379'))],
+            },
         },
-    },
-}
+    }
+else:
+        CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        },
+    }
 
 
 # Database
