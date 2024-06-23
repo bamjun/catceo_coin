@@ -23,7 +23,7 @@ RUN poetry config virtualenvs.create false \
 COPY . /app/
 
 # Collect static files (optional)
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput --settings=config.settings
 
 # Expose port 8000
 EXPOSE 8000
