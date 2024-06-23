@@ -9,7 +9,7 @@ SECRET_KEY = 'eefkljbfef(3iweh*fh-4rte67q*h*u9tkix!2m07h(m*b49&ww$hngeu!okvb*kqo
 
 
 if platform.system() == 'Linux':
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
