@@ -114,7 +114,7 @@
             {% endfor %}
         </div>
         <div class="input-container">
-            <form id="chat-form" method="post" action="{% url 'send_message' %}">
+            <form id="chat-form" method="post" action="{% url 'send_message' %}" onsubmit="sendMessage(event)">
                 {% csrf_token %}
                 <label for="nickname">Nickname:</label>
                 <input type="text" id="nickname" name="nickname">
@@ -177,6 +177,23 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
         function convertToAmericanTime(isoString) {
             const date = new Date(isoString);
             const options = {
@@ -236,19 +253,58 @@
             scrollToBottom();
         }
 
+        function sendMessage(event) {
+            event.preventDefault(); // 폼 제출 기본 동작 방지
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            const sendButton = document.getElementById("send-button");
+            sendButton.disabled = true;
+
+            let countdown = 5;
+            const countdownInterval = setInterval(() => {
+                if (countdown > 0) {
+                    sendButton.textContent = `Send (${countdown})`;
+                    countdown--;
+                } else {
+                    sendButton.textContent = "Send";
+                    sendButton.disabled = false;
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+
+            fetch(form.action, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrftoken,
+                },
+                body: formData,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    data.forEach((message) => displayMessage(message));
+                } else {
+                    displayMessage(data);
+                }
+                document.getElementById("content").value = ""; // 컨텐츠 필드 비우기
+                scrollToBottom();
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
         function scrollToBottom() {
             const chatBox = document.getElementById("chat-box");
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
         // 초기 메시지에서 이미지 처리
-        document
-            .querySelectorAll(".chat-message .content")
-            .forEach((contentElement) => {
-                const parsedContent = parseContent(contentElement.innerHTML);
-                contentElement.innerHTML = "";
-                contentElement.appendChild(parsedContent);
-            });
+        document.querySelectorAll(".chat-message .content").forEach((contentElement) => {
+            const parsedContent = parseContent(contentElement.innerHTML);
+            contentElement.innerHTML = "";
+            contentElement.appendChild(parsedContent);
+        });
 
         // 페이지 로드 시 맨 아래로 스크롤
         window.onload = scrollToBottom;
