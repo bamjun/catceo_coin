@@ -18,7 +18,6 @@ else:
 
     application = get_asgi_application()
 
-
     application = ProtocolTypeRouter({
         "http": get_asgi_application(),
         "websocket": AuthMiddlewareStack(
