@@ -19,7 +19,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://cat.ceo',
 ]
 
-# Application definition
+# Application definition 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
