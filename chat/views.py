@@ -26,11 +26,6 @@ def send_message(request):
         nickname = request.POST.get('nickname')
         content = request.POST.get('content')
         
-        if len(nickname) > 10:
-            return JsonResponse({'message': 'Nickname exceeds 10 characters'}, status=412)
-        if len(content) > 500:
-            return JsonResponse({'message': 'Content exceeds 50 characters'}, status=413)
-        
         last_message = BaseFirstChat.objects.last()
         if last_message and (timezone.now() - last_message.time).total_seconds() < 5:
             return JsonResponse({'message': 'You must wait 5 seconds between messages'}, status=400)
