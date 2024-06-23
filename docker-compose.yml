@@ -11,9 +11,11 @@ services:
       - "8000:8000"
     depends_on:
       - redis
+      - db
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings
       - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
 
   daphne:
     build: .
@@ -25,14 +27,25 @@ services:
     depends_on:
       - web
       - redis
+      - db
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings
       - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
 
   redis:
     image: redis:alpine
     ports:
       - "6379:6379"
+
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
 
   nginx:
     image: nginx:alpine
@@ -47,3 +60,6 @@ services:
     depends_on:
       - web
       - daphne
+
+volumes:
+  postgres_data:

@@ -27,7 +27,7 @@ def send_message(request):
         content = request.POST.get('content')
         
         last_message = BaseFirstChat.objects.last()
-        if last_message and (timezone.now() - last_message.time).total_seconds() < 5:
+        if last_message and (timezone.now() - last_message.time).total_seconds() < 1:
             return JsonResponse({'message': 'You must wait 5 seconds between messages'}, status=400)
         
         new_message = BaseFirstChat.objects.create(nickname=nickname, content=content)
