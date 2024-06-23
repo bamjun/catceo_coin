@@ -378,6 +378,21 @@ twisted = {version = ">=22.4", extras = ["tls"]}
 tests = ["django", "hypothesis", "pytest", "pytest-asyncio"]
 
 [[package]]
+name = "dj-database-url"
+version = "2.2.0"
+description = "Use Database URLs in your Django Application."
+optional = false
+python-versions = "*"
+files = [
+    {file = "dj_database_url-2.2.0-py3-none-any.whl", hash = "sha256:3e792567b0aa9a4884860af05fe2aa4968071ad351e033b6db632f97ac6db9de"},
+    {file = "dj_database_url-2.2.0.tar.gz", hash = "sha256:9f9b05058ddf888f1e6f840048b8d705ff9395e3b52a07165daa3d8b9360551b"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+typing_extensions = ">=3.10.0.0"
+
+[[package]]
 name = "django"
 version = "5.0.6"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -892,4 +907,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "ebfa1e4e4f6ccb02fa6143c4073213ecba1793e456ed4b69b2e2d59230ce1f4c"
+content-hash = "e8dbe80e8b6d91c3a2ebc7a33f0f1d9864c31e52c5c82e64a8db3fb3441f1dfa"
