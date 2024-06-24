@@ -31,7 +31,7 @@
         padding: 0;
         position: relative;
         width: 100%;
-        background: #3586ff;
+
         min-height: 100px;
         padding: 20px 50px;
         display: flex;
@@ -88,43 +88,92 @@
         font-weight: 300;
       }
 
-      .wave {
+
+      .wave-top {
+        filter: blur(5px); 
         position: absolute;
-        top: -100px;
+        top: 100px;
         left: 0;
         width: 100%;
-        height: 100px;
+        height: 100%;
         background: url({% static 'images/wave.png' %});
-        background-size: 1000px 100px;
+        background-size: 200px 200px;
+      }
+
+      .wave-top#wave-top1 {
+        z-index: -1;
+        opacity: 1;
+        bottom: 0;
+        animation: animateWaves 7s linear infinite;
+      }
+
+      .wave-top#wave-top2 {
+        z-index: -2;
+        opacity: 0.5;
+        bottom: 10px;
+        animation: animate 7s linear infinite !important;
+      }
+
+      .wave-top#wave-top3 {
+        z-index: -1;
+        opacity: 0.2;
+        bottom: 15px;
+        animation: animateWaves 7s linear infinite;
+      }
+
+      .wave-top#wave-top4 {
+        z-index: -2;
+        opacity: 0.7;
+        bottom: 20px;
+        animation: animate 7s linear infinite;
+      }
+
+      .wave-top#wave-top5 {
+        z-index: -1;
+        opacity: 1;
+        bottom: 25px;
+        animation: animateWaves 7s linear infinite;
+      }
+
+
+      .wave {
+        position: absolute;
+        top: -200px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url({% static 'images/wave.png' %});
+        background-size: 200px 200px;
       }
 
       .wave#wave1 {
         z-index: 1000;
         opacity: 1;
         bottom: 0;
-        animation: animateWaves 4s linear infinite;
+        animation: animateWaves 7s linear infinite;
       }
 
       .wave#wave2 {
         z-index: 999;
         opacity: 0.5;
         bottom: 10px;
-        animation: animate 4s linear infinite !important;
+        animation: animate 7s linear infinite !important;
       }
 
       .wave#wave3 {
         z-index: 1000;
         opacity: 0.2;
         bottom: 15px;
-        animation: animateWaves 3s linear infinite;
+        animation: animateWaves 7s linear infinite;
       }
 
       .wave#wave4 {
         z-index: 999;
         opacity: 0.7;
         bottom: 20px;
-        animation: animate 3s linear infinite;
+        animation: animate 7s linear infinite;
       }
+      
 
       @keyframes animateWaves {
         0% {
@@ -148,7 +197,7 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #333;
+        background-color: #5783fe;
         color: white;
       }
       #chat-box {
@@ -157,7 +206,7 @@
         height: 60vh;
         overflow-y: scroll;
         margin-bottom: 10px;
-        background-color: #444;
+        background-color: #bc1ec2;
         color: white;
       }
       .chat-message {
@@ -171,7 +220,7 @@
       }
       .time {
         font-size: 0.8em;
-        color: gray;
+        color: blue;
         margin-left: 5px;
       }
       .image {
@@ -192,7 +241,7 @@
         padding: 10px;
         margin: 5px 0;
         box-sizing: border-box;
-        background-color: #555;
+        background-color: #bc1ec2;
         color: white;
         border: 1px solid #ccc;
       }
@@ -223,16 +272,27 @@
           padding: 10px 0;
         }
       }
+      .instruction {
+        width: 70%;
+
+      }
     </style>
   </head>
   <body>
+    <div class="waves-top">
+      <div class="wave-top" id="wave-top1"></div>
+      <div class="wave-top" id="wave-top2"></div>
+      <div class="wave-top" id="wave-top3"></div>
+      <div class="wave-top" id="wave-top4"></div>
+      <div class="wave-top" id="wave-top5"></div>
+    </div>
     <br />
     <br />
-    <div class="first-intro" id="first-intro">CATCEO</div>
+    <div class="first-intro" id="first-intro">SMDOGE</div>
     <div class="second-intro" id="second-intro">
       SOL CA :
       <div class="second-intro-text" id="second-intro-text">
-        7EDRt5NZun7RakNpa8MuSGKwmc7gtXgTt1gyLQakgvn1
+        
       </div>
       <span class="copy-icon" onclick="copyToClipboard()"> copy📋</span>
     </div>
@@ -274,23 +334,11 @@
       <br />
       <!-- Main Page Content -->
       <div class="instruction" id="instruction">
-        CATCEO is an extraordinary project designed to captivate your heart by
-        sharing the most adorable and irresistible cats, engaging in delightful
-        and lively conversations, and building a vibrant and welcoming
-        community. With our powerful API, you can effortlessly fetch charming
-        and heartwarming cat photos to enrich any website or service. Plus, our
-        advanced AI-driven chats allow you to communicate and bond with these
-        lovable and enchanting felines in an interactive and magical way. It
-        might feature a business and lifestyle magazine tailored for cat lovers,
-        possibly named "Cat CEO Zine." This magazine could offer articles, tips,
-        and stories related to cats and their owners. Additionally, there could
-        be a "Cats-as-a-Service" API, providing a large collection of
-        open-source cat pictures. The website might also include sections for
-        cat breed information, advice on cat care, and even a section for
-        business advice, but with a humorous twist related to cats. The overall
-        theme would blend cats with elements of business and lifestyle,
-        targeting cat enthusiasts who enjoy a blend of humor, practical advice,
-        and cat-related content.
+        "Sangmo" is a special type of hat decoration used in traditional Korean performing arts, particularly in performances like Samulnori and Nongak, which are forms of traditional folk music and dance. Sangmo consists of a hat with a long ribbon or string attached to it, which performers spin and twirl while dancing.
+        The defining feature of Sangmo is the long ribbon or string that is attached to the hat, which creates visually striking patterns as it spins according to the movements of the performer's head. This creates a dynamic and colorful visual effect that complements the rhythm of the folk music. Sangmo dance highlights the performers' skill and artistry, and it is a significant element of Korean traditional culture, appreciated both domestically and internationally.
+        SMDOGE is a new coin that combines the traditional Korean hat, Sangmo, with the popular meme coin, Dogecoin. SMDOGE merges the unique and colorful design elements of Sangmo with the iconic Dogecoin dog, creating an original image that bridges tradition and modernity. This coin aims to combine Korean traditional culture with the latest cryptocurrency trends, offering a unique and appealing form of digital asset.
+
+
       </div>
       <br />
       <br />
@@ -319,7 +367,7 @@
           <a
             class="social-icon__link"
             target="_blank"
-            href="https://x.com/@catceo_"
+            href="https://x.com/smdoge_"
           >
             <ion-icon name="logo-twitter"></ion-icon>
           </a>
@@ -327,13 +375,13 @@
       </ul>
       <ul class="menu">
         <li class="menu__item">
-          <a class="menu__link" href="https://t.me/catceo_portal">telegram</a>
+          <a class="menu__link" href="https://t.me/smdoge_port">telegram</a>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="https://dexscreener.com/solana/8atkgrlrfpsfarjigjdhzvygr9ztwgswgxzbrciters5">dexscreener</a>
+          <a class="menu__link" href="https://t.me/smdoge_port">dexscreener</a>
         </li>
       </ul>
-      <p class="footer_p">&copy;2024 catceo | All Rights Reserved</p>
+      <p class="footer_p">&copy;2024 SMDOGE | All Rights Reserved</p>
     </footer>
     <script
       type="module"
