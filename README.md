@@ -1,3 +1,9 @@
+#open ai 키넣어야함.
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sangmodoge.com',
+]
+
 ### SSL 인증서 설정 (선택 사항)
 
 Let's Encrypt를 사용하여 SSL 인증서를 설정할 수 있습니다. Certbot을 사용하여 SSL 인증서를 자동으로 발급하고 갱신할 수 있습니다.

@@ -17,7 +17,7 @@ else:
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://cat.ceo',
+    'https://sangmodoge.com',
 ]
 
 # Application definition 
