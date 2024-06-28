@@ -1,3 +1,6 @@
+- workflows 바꿔야함. 깃허브에 변수도 새로저장해야함..
+
+
 #open ai 키넣어야함.
 
 CSRF_TRUSTED_ORIGINS = [
