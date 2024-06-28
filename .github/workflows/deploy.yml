@@ -3,7 +3,7 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main  # 또는 배포하고 싶은 브랜치 이름
+      - catceo-main  # 또는 배포하고 싶은 브랜치 이름
 
 jobs:
   deploy:
@@ -56,8 +56,3 @@ jobs:
         curl -X POST -H "Content-Type: application/json" \
           -d '{"content": "Deployment to server is complete!\nRepository: '${{ github.repository }}'\nCommit: '${{ github.sha }}'\nBranch: '${{ github.ref }}'"}' \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-
-
-
-
