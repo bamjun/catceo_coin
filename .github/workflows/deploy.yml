@@ -23,8 +23,8 @@ jobs:
           script: |
             cd ~/catceo_coin
             git stash
-            git switch smdoge-main
-            git pull origin smdoge-main
+            git switch whiz-main
+            git pull origin whiz-main
             sudo docker-compose -f docker-compose.yml up --build -d
 
             sudo docker logs catceo_coin-redis-1 > redis-logs.txt
