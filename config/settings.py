@@ -10,14 +10,14 @@ SECRET_KEY = 'eefkljbfef(3iweh*fh-4rte67q*h*u9tkix!2m07h(m*b49&ww$hngeu!okvb*kqo
 
 
 if platform.system() == 'Linux':
-    DEBUG = True
+    DEBUG = False
 else:
     DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://sangmodoge.com',
+    'https://colorwhiz.xyz',
 ]
 
 # Application definition 
