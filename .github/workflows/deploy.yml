@@ -27,31 +27,6 @@ jobs:
             git pull origin whiz-main
             sudo docker-compose -f docker-compose.yml up --build -d
 
-            # sudo docker logs catceo_coin-redis-1 > redis-logs.txt
-            # sudo docker logs catceo_coin-web-1 > web-logs.txt
-            # sudo docker logs catceo_coin-daphne-1 > daphne-logs.txt
-            # sudo docker logs catceo_coin-nginx-1 > nginx-logs.txt
-
-            # echo '```' > combined_logs.txt
-            # echo "Redis Logs:" >> combined_logs.txt
-            # tail -n 2 redis-logs.txt | sed 's/"/\\"/g' >> combined_logs.txt
-            # echo "" >> combined_logs.txt
-            # echo "Web Logs:" >> combined_logs.txt
-            # tail -n 2 web-logs.txt | sed 's/"/\\"/g' >> combined_logs.txt
-            # echo "" >> combined_logs.txt
-            # echo "Daphne Logs:" >> combined_logs.txt
-            # tail -n 2 daphne-logs.txt | sed 's/"/\\"/g' >> combined_logs.txt
-            # echo "" >> combined_logs.txt
-            # echo "Nginx Logs:" >> combined_logs.txt
-            # tail -n 2 nginx-logs.txt | sed 's/"/\\"/g' >> combined_logs.txt
-            # echo '```' >> combined_logs.txt
-
-            # LOGS_CONTENT=$(cat combined_logs.txt | sed ':a;N;$!ba;s/\n/\\n/g')
-            # curl -H "Content-Type: application/json" \
-            #     -X POST \
-            #     -d "{\"content\": \"$LOGS_CONTENT\"}" \
-            #     ${{ secrets.DISCORD_WEBHOOK_URL }}
-
       - name: Send notification to Discord
         run: |
           curl -X POST -H "Content-Type: application/json" \
