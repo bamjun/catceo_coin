@@ -3,7 +3,7 @@
 # on:
 #   push:
 #     branches:
-#       - smdoge-main  # 또는 배포하고 싶은 브랜치 이름
+#       - whiz-main  # 또는 배포하고 싶은 브랜치 이름
 
 # jobs:
 #   deploy:
@@ -16,9 +16,9 @@
 #     - name: Deploy to server
 #       uses: appleboy/ssh-action@master
 #       with:
-#         host: ${{ secrets.SMDOGE_SERVER_HOST }}
+#         host: ${{ secrets.WHIZ_SERVER_HOST }}
 #         username: ${{ secrets.SERVER_USER }}
-#         key: ${{ secrets.SMDOGE_SERVER_SSH_KEY }}
+#         key: ${{ secrets.WHIZ_SERVER_SSH_KEY }}
 #         port: ${{ secrets.AWS_SSH_PORT }}
 #         script: |
 #               cd ~/catceo_coin
