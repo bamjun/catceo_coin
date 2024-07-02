@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SMDOGE</title>
+    <title>WHIZ</title>
     {% load static %}
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
     <link rel="stylesheet" href="{% static 'css/container.css' %}" />
@@ -276,6 +276,19 @@
         width: 70%;
         margin: 0 auto;
       }
+
+      button {
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
     </style>
   </head>
   <body>
@@ -288,14 +301,43 @@
     </div>
     <br />
     <br />
-    <div class="first-intro" id="first-intro">SMDOGE</div>
+    <div class="first-intro" id="first-intro">Color Whiz</div>
     <div class="second-intro" id="second-intro">
-      SOL CA :
+      WHIZ :
       <div class="second-intro-text" id="second-intro-text">
-        
+        BTXqLpGjH96J4NgMoUKbYYiYhGSFyvFiDRD9rxWEZXuu
       </div>
-      <span class="copy-icon" onclick="copyToClipboard()"> copy📋</span>
+      <button class="copy-icon" onclick="copyToClipboard()">  copy  </button>
     </div>
+
+    <style>
+      #dexscreener-embed {
+
+          display: flex;
+          justify-content: center; /* Center horizontally */
+          align-items: center; /* Center vertically */
+          width: 100%;
+          height: 50vh; /* Full height of the viewport */
+      }
+      
+      #dexscreener-embed iframe {
+          border: 0;
+          width: 95%;
+          height: 100%;
+      }
+      
+      @media(min-width: 800px) {
+          #dexscreener-embed iframe {
+              width: 50%;
+              height: 100%;
+          }
+      }
+      </style>
+      <div id="dexscreener-embed">
+          <iframe src="https://dexscreener.com/solana/GR8vSePBJQrkWdJ6SznHWqVskXK2Ugph4dBjYT6pMJC4?embed=1"></iframe>
+      </div>
+      
+    
     <br />
     <br />
     <br />
@@ -334,10 +376,39 @@
       <br />
       <!-- Main Page Content -->
       <div class="instruction" id="instruction">
-        "Sangmo" is a special type of hat decoration used in traditional Korean performing arts, particularly in performances like Samulnori and Nongak, which are forms of traditional folk music and dance. Sangmo consists of a hat with a long ribbon or string attached to it, which performers spin and twirl while dancing.
-        The defining feature of Sangmo is the long ribbon or string that is attached to the hat, which creates visually striking patterns as it spins according to the movements of the performer's head. This creates a dynamic and colorful visual effect that complements the rhythm of the folk music. Sangmo dance highlights the performers' skill and artistry, and it is a significant element of Korean traditional culture, appreciated both domestically and internationally.
-        SMDOGE is a new coin that combines the traditional Korean hat, Sangmo, with the popular meme coin, Dogecoin. SMDOGE merges the unique and colorful design elements of Sangmo with the iconic Dogecoin dog, creating an original image that bridges tradition and modernity. This coin aims to combine Korean traditional culture with the latest cryptocurrency trends, offering a unique and appealing form of digital asset.
-
+        <div class="container">
+          <h1 class="title">Meet Color Whiz: The Playful and Catchy Character</h1>
+          
+          <div class="section">
+              <h2 class="section-title">Appearance</h2>
+              <p class="text">Color Whiz is a vibrant and playful character with an exaggerated and humorous expression. With large expressive eyes, a big smile, and a quirky outfit, Color Whiz radiates joy and creativity. The character is always seen with a paintbrush and a palette of vibrant colors, ready to spread artistic inspiration wherever they go.</p>
+          </div>
+          
+          <div class="section">
+              <h2 class="section-title">Personality</h2>
+              <p class="text">Color Whiz is all about fun and creativity. They love mixing new shades, splattering paint with enthusiasm, and simply enjoying the beauty of every color in the palette. This charming character embodies the spirit of creativity and fun, making every moment a colorful adventure.</p>
+          </div>
+          
+          <div class="section">
+              <h2 class="section-title">Backstory</h2>
+              <p class="text">Color Whiz got their name from their incredible talent with colors and their ability to bring joy through art. Born from a world of imagination, Color Whiz has been inspiring others to embrace their creative side and explore the endless possibilities of art. Their journey began in a magical studio where every brushstroke brought new life to their vibrant world.</p>
+          </div>
+          
+          <div class="section">
+              <h2 class="section-title">Why You’ll Love Color Whiz</h2>
+              <p class="text"><strong>Vibrant Appearance:</strong> With a colorful and engaging look, Color Whiz captures the essence of creativity and joy.</p>
+              <p class="text"><strong>Creative Spirit:</strong> This character is always ready to inspire and encourage artistic expression.</p>
+              <p class="text"><strong>Playful Personality:</strong> Color Whiz brings a sense of fun and whimsy to every situation.</p>
+              <p class="text"><strong>Artistic Inspiration:</strong> From mixing new shades to splattering paint, Color Whiz shows that art is all about enjoying the process.</p>
+          </div>
+          
+          <div class="section">
+              <h2 class="section-title">Join the Color Whiz Adventure</h2>
+              <p class="text">Step into the colorful world of Color Whiz and let this playful character elevate your creative experience. Whether you're painting, drawing, or just enjoying the beauty of colors, Color Whiz is there to make every moment a masterpiece. With every interaction, you'll feel the joy and excitement that comes with embracing your artistic side.</p>
+              <p class="text">Let Color Whiz brighten your days and make every creative endeavor a delightful adventure!</p>
+          </div>
+      </div>
+      
 
       </div>
       <br />
@@ -367,7 +438,7 @@
           <a
             class="social-icon__link"
             target="_blank"
-            href="https://x.com/smdoge_"
+            
           >
             <ion-icon name="logo-twitter"></ion-icon>
           </a>
@@ -375,10 +446,10 @@
       </ul>
       <ul class="menu">
         <li class="menu__item">
-          <a class="menu__link" href="https://t.me/smdoge_port">telegram</a>
+          <a class="menu__link">telegram</a>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="https://t.me/smdoge_port">dexscreener</a>
+          <a class="menu__link">dexscreener</a>
         </li>
       </ul>
       <p class="footer_p">&copy;2024 SMDOGE | All Rights Reserved</p>

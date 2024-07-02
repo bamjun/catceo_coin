@@ -1,10 +1,69 @@
-- workflows 바꿔야함. 깃허브에 변수도 새로저장해야함..
+aws 라이트세일  
 
+![alt text](<images/markdown-Pasted image 20240702153050.png>)
+
+dns 생성  
+
+
+
+
+
+- 스테틱도 만들어야함
+
+깃허브 디플로이 yml 설정할때
+![alt text](<images/markdown-Pasted image 20240702153211.png>)
+
+- WHIZ_SERVER_HOST = ip
+- WHIZ_SERVER_SSH_KEY = pem key
+- 브랜치 도 변경
+  ![alt text](<images/markdown-Pasted image 20240702153338.png>)
+- 깃액션 깃 풀 명령어 변경
+  ![alt text](<images/markdown-Pasted image 20240702154936.png>)
+
+---
+
+# 맨처음 깃 푸쉬할때
+
+[여기서 절차대로 해야함](https://github.com/bamjun/oz-test-miniproject-1)
+
+깃허브 리드 비 키
+
+```
+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
+```
+
+- nginx.conf - 도메인변경 ( 24번째줄) 18번째줄
+- 26 27 번째출 ssl 경로도 변경
+  ![alt text](<images/markdown-Pasted image 20240702155024.png>)
+
+![alt text](<images/markdown-Pasted image 20240702155625.png>)
+
+[여기서 설명보고 ssl 발급](https://github.com/bamjun/catceo_coin)
+
+# 채팅할때
+
+```python
+CSRF_TRUSTED_ORIGINS = [
+
+    'https://colorwhiz.xyz',
+
+]
+```
+
+config.ini 복사하기
+
+---
+
+---
+
+---
+
+- workflows 바꿔야함. 깃허브에 변수도 새로저장해야함..
 
 #open ai 키넣어야함.
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://sangmodoge.com',
+'https://sangmodoge.com',
 ]
 
 ### SSL 인증서 설정 (선택 사항)
@@ -25,8 +84,6 @@ sudo certbot --nginx -d cat.ceo
 ```
 
 Certbot은 Nginx 설정 파일을 자동으로 업데이트하여 SSL 설정을 추가합니다.
-
-
 
 ```sh
 sudo lsof -i :80
