@@ -27,10 +27,10 @@ jobs:
             git pull origin whiz-main
             sudo docker-compose -f docker-compose.yml up --build -d
 
-            sudo docker logs catceo_coin-redis-1 > redis-logs.txt
-            sudo docker logs catceo_coin-web-1 > web-logs.txt
-            sudo docker logs catceo_coin-daphne-1 > daphne-logs.txt
-            sudo docker logs catceo_coin-nginx-1 > nginx-logs.txt
+            # sudo docker logs catceo_coin-redis-1 > redis-logs.txt
+            # sudo docker logs catceo_coin-web-1 > web-logs.txt
+            # sudo docker logs catceo_coin-daphne-1 > daphne-logs.txt
+            # sudo docker logs catceo_coin-nginx-1 > nginx-logs.txt
 
             # echo '```' > combined_logs.txt
             # echo "Redis Logs:" >> combined_logs.txt
