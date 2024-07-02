@@ -27,8 +27,4 @@ jobs:
             git pull origin whiz-main
             sudo docker-compose -f docker-compose.yml up --build -d
 
-      - name: Send notification to Discord
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-            -d '{"content": "Deployment to server is complete!\nRepository: '${{ github.repository }}'\nCommit: '${{ github.sha }}'\nBranch: '${{ github.ref }}'"}' \
-            ${{ secrets.DISCORD_WEBHOOK_URL }}
+
