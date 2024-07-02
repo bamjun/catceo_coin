@@ -3,7 +3,7 @@
 on:
   push:
     branches:
-      - whiz-main # 또는 배포하고 싶은 브랜치 이름
+      - whiz-main # 🧨🧨🧨🧨 또는 배포하고 싶은 브랜치 이름 
 
 jobs:
   deploy:
@@ -16,15 +16,15 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.WHIZ_SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.WHIZ_SERVER_SSH_KEY }}
+          host: ${{ secrets.WHIZ_SERVER_HOST }}    # 🧨🧨🧨🧨 서버 IP
+          username: ${{ secrets.SERVER_USER }}    
+          key: ${{ secrets.WHIZ_SERVER_SSH_KEY }}      # 🧨🧨🧨🧨 PEM key
           port: ${{ secrets.AWS_SSH_PORT }}
           script: |
             cd ~/catceo_coin
             git stash
-            git switch whiz-main
-            git pull origin whiz-main
+            git switch whiz-main                 # 🧨🧨🧨🧨 브랜치이름
+            git pull origin whiz-main             # 🧨🧨🧨🧨 브랜치이름
             sudo docker-compose -f docker-compose.yml up --build -d
 
             sudo docker logs catceo_coin-redis-1 > redis-logs.txt
