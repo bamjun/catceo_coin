@@ -56,7 +56,7 @@ def send_message(request):
             'chat_group',
             {
                 'type': 'chat_message',
-                'nickname': '🐱CATCEO🐾',
+                'nickname': 'Color Whiz🍭',
                 'content': response_text,
                 'timestamp': gpt_message.time.astimezone(pytz.timezone('America/New_York')).strftime('%Y-%m-%d %H:%M:%S %Z')
             }
@@ -74,7 +74,7 @@ def format_messages(messages):
         ny_time = message.time.astimezone(pytz.timezone('America/New_York'))
         nickname_index = message.nickname
         if nickname_index == 'GPTs_Answer_Assistant':
-            nickname_index = '🐱CATCEO🐾'
+            nickname_index = 'Color Whiz🍭'
         
         response_list.append({
             'Nickname': nickname_index,
@@ -84,12 +84,12 @@ def format_messages(messages):
     return response_list
 
 def send_openai_request(recent_rows):
-    prompt_text = 'The Nickname GPT_you is you. You are CATCEO. CATCEO is a service for sharing charming and adorable cats. You can get random cat photos through an API. The following sentences are what people are saying to you. Respond in a fun way.'
+    prompt_text = 'The Nickname GPT_you is you. You are Color Whiz. Color Whiz is a service for sharing charming and adorable cats. You can get random cat photos through an API. The following sentences are what people are saying to you. Respond in a fun way.'
     system_message = {"role": "system", "content": prompt_text}
     messages = [system_message]
     
     for row in recent_rows:
-        nickname_index = "assistant" if row['Nickname'] == "🐱CATCEO🐾" else "user"
+        nickname_index = "assistant" if row['Nickname'] == "Color Whiz🍭" else "user"
         messages.append({
             "role": nickname_index,
             "content": row['Content'],
